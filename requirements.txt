@@ -1,0 +1,8 @@
+yfinance
+pandas
+prophet
+scikit-learn
+mlflow
+matplotlib
+fastapi
+uvicorn[standard]

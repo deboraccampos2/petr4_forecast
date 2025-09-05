@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  training:
+    build: .
+    container_name: petr4_training
+    command: python training/train.py
+    volumes:
+      - ./mlruns:/app/mlruns
+      - ./plots:/app/plots
+      - ./models:/app/models
+    depends_on:
+      - mlflow
+
+  api:
+    build: .
+    container_name: petr4_api
+    command: ["sh", "-c", "./wait_and_start.sh"]
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models:/app/models
+      - ./wait_and_start.sh:/app/wait_and_start.sh
+    depends_on:
+      - mlflow
+      - training
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:latest
+    container_name: petr4_mlflow
+    command: mlflow server --backend-store-uri /mlflow --default-artifact-root /mlflow --host 0.0.0.0 --port 5000
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlruns:/mlflow
