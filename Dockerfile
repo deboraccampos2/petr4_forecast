@@ -7,7 +7,7 @@ WORKDIR /app
 # Evitar prompts do apt
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Instalar dependências do sistema necessárias para Prophet e matplotlib
+# Instalar dependências do sistema necessárias
 RUN apt-get update && apt-get install -y \
     build-essential \
     gcc \
@@ -17,8 +17,6 @@ RUN apt-get update && apt-get install -y \
     libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 
-# Copiar requirements.txt se tiver ou instalar direto
-# Aqui instalamos direto os pacotes necessários
 RUN pip install --upgrade pip
 RUN pip install \
     pandas \
@@ -36,5 +34,3 @@ COPY . /app
 
 # Dar permissão de execução para o script de espera
 RUN chmod +x wait_and_start.sh
-
-# Default command (não usado no training, será sobrescrito no doc
