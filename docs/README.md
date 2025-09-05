@@ -1,11 +1,8 @@
-# Previsão de fechamento PETR4-SA
+## Previsão de fechamento PETR4-SA
 
-# Pós Tech -  MACHINE LEARNING ENGINEERING
+## Pós Tech -  MACHINE LEARNING ENGINEERING
 
 Prova Substitutiva Fase 5 - FIAP
-
-# Aluna: 
-- Débora Correia Campos
 
 ## Introdução
 Este projeto implementa um pipeline de **previsão de séries temporais** para a ação **PETR4.SA** utilizando o modelo **Prophet**, com deploy via **FastAPI** e monitoramento com **MLflow**.  
